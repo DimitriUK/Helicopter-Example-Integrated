@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7670dcedaa35dad46bcf6c7687c52728, type: 3}
+  m_Name: HMSAchievementsSettings
+  m_EditorClassIdentifier: 
+  settings:
+    _keys:
+    - 8C0E495BD73D083E42264C1807AB6CEA05297F0D695260BE84EED5E372BDF368
+    _values:
+    - LandinglikeaPro
