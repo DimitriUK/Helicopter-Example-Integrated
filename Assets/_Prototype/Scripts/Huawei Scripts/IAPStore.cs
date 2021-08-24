@@ -6,6 +6,7 @@ using HuaweiMobileServices.IAP;
 
 public class IAPStore : MonoBehaviour
 {
+    #region Variables
     [Header("UI General Objects")]
     public TextMeshProUGUI PlayerGold_TEXT;
 
@@ -14,15 +15,19 @@ public class IAPStore : MonoBehaviour
     public TextMeshProUGUI ProductName_TEXT;
     public Image ProductImage_IMG;
     public TextMeshProUGUI ProductDesc_TEXT;
+    #endregion
 
+    #region General Functions
     private void Start()
     {
-        HMSIAPManager.Instance.OnBuyProductSuccess = OnBuyProductSuccess;
+        HMSIAPManager.Instance.OnBuyProductSuccess = OnBuyProductSuccess; // Ensuring when a product is bought, it runs the OnBuyProductSuccess function
 
         PlayerGold_TEXT.text = PlayerPrefs.GetInt("Gold", 10).ToString();
-    }    
+    }
+    #endregion
 
-    public void BuyIAPProduct(string productId)
+    #region Core Functions
+    public void BuyIAPProduct(string productId) // When purchasing an IAP, run this function and pass in the Huawei IAP Product ID
     {
         HMSIAPManager.Instance.BuyProduct(productId);
     }
@@ -31,15 +36,15 @@ public class IAPStore : MonoBehaviour
     {
         string productId = obj.InAppPurchaseData.ProductId;
 
-        if (productId.Equals(HMSIAPConstants.remove_ads))
+        if (productId.Equals(HMSIAPConstants.remove_ads)) // If the purchase was detected as 'Remove Ads', turn off Ads.
         {
-            PlayerPrefs.SetInt("Ads", 0);
+            HuaweiManager.instance.DisableAds();
         }
-        else if (productId.Equals(HMSIAPConstants.obtain_gold_100))
+        else if (productId.Equals(HMSIAPConstants.obtain_gold_100)) // If the purchase was detected as '100 Gold', purchase 100 gold in game.
         {
             BuyCoins(100);
         }
-        else if (productId.Equals(HMSIAPConstants.obtain_gold_200))
+        else if (productId.Equals(HMSIAPConstants.obtain_gold_200)) // If the purchase was detected as '200 Gold', purchase 100 gold in game.
         {
             BuyCoins(200);
         }
@@ -77,4 +82,5 @@ public class IAPStore : MonoBehaviour
     {
         PlayerGold_TEXT.text = PlayerPrefs.GetInt("Gold", 10).ToString();
     }
+    #endregion
 }

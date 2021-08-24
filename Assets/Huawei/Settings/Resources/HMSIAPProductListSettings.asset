@@ -14,12 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     _keys:
-    - remove_ads
     - obtain_gold_100
     - obtain_gold_200
-    - test_ads
     _values:
-    - NonConsumable
     - Consumable
     - Consumable
-    - NonConsumable

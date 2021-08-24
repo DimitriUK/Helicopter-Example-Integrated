@@ -13,7 +13,7 @@ public class HuaweiManager : MonoBehaviour
         CheckIfAdsEnabled();
     }
 
-    public void CheckIfAdsEnabled()
+    public void CheckIfAdsEnabled() // This function will run a check through all the Huawei user's purchases for this game and check if an item exists of the name 'ads_remove'
     {
         IsAdsOn = true;
 
@@ -21,9 +21,9 @@ public class HuaweiManager : MonoBehaviour
         {
             foreach (var item in returnedList.ItemList)
             {
-                if (item == "remove_ads")
+                if (item == "ads_remove")
                 {
-                    DisableAds();
+                    DisableAds(); // If item was found with the name 'ads_remove' - Run the function DisableAds();
                 }
             }
         });
@@ -39,7 +39,7 @@ public class HuaweiManager : MonoBehaviour
     {
         if (!IsAdsOn)
         {
-            Debug.Log("ADS IS OFF, DID NOT PLAY AN AD");
+            Debug.Log("Ads Test: ADS IS OFF, DID NOT PLAY AN AD");
             return;
         }
 
@@ -60,15 +60,15 @@ public class HuaweiManager : MonoBehaviour
     #region Ad Functions
     private void OpenBannerAd()
     {
-        HMSAdsKitManager.Instance.ShowBannerAd();
+        HMSAdsKitManager.Instance.ShowBannerAd(); // Plays banner-based Huawei Ad
     }
     private void OpenInterstitialAd()
     {
-        HMSAdsKitManager.Instance.ShowInterstitialAd();
+        HMSAdsKitManager.Instance.ShowInterstitialAd(); // Plays interstitial-based Huawei Ad
     }
     private void OpenRewardedAd()
     {
-        HMSAdsKitManager.Instance.ShowRewardedAd();
+        HMSAdsKitManager.Instance.ShowRewardedAd(); // Plays rewarded-based Huawei Ad
     }
     #endregion
 }

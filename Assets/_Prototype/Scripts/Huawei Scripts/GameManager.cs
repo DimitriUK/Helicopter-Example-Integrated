@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using HmsPlugin;
 
@@ -47,8 +45,11 @@ public class GameManager : MonoBehaviour
 
         GiveScore(landingSpeed);
 
-        if (SceneManager.GetActiveScene().name == "Level01")         
-        HMSAchievementsManager.Instance.UnlockAchievement(HMSAchievementConstants.FirstLevelComplete);
+        if (SceneManager.GetActiveScene().name == "Level01")
+        {
+            HMSAchievementsManager.Instance.UnlockAchievement(HMSAchievementConstants.FirstLevelComplete); // Unlocks the achievement mentioned in the Constants Class
+            HMSAchievementsManager.Instance.RevealAchievement(HMSAchievementConstants.SecondLevelComplete); // Reveals the achievement of completing the second level, which can now be shown in the native UI on the main menu.
+        }
 
         if (landingSpeed < 0.33f)
         {
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Give Achievement for losing level");
 
-        HuaweiManager.instance.OpenAd(0);
+        HuaweiManager.instance.OpenAd(0); // When failing the level, trigger a banner-based advertisement to start.
     }
 
     public void GiveScore(float landingSpeed)
