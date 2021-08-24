@@ -47,9 +47,8 @@ public class GameManager : MonoBehaviour
 
         GiveScore(landingSpeed);
 
-        //if (SceneManager.GetActiveScene().name == "Level01")         
-        Debug.Log("Give Achievement for completing first level"); // Can be replaced with an achievement to be provided when you complete your first level.
-        //HMSAchievementsManager.Instance.UnlockAchievement(HMSAchievementConstants.LandinglikeaPro);
+        if (SceneManager.GetActiveScene().name == "Level01")         
+        HMSAchievementsManager.Instance.UnlockAchievement(HMSAchievementConstants.FirstLevelComplete);
 
         if (landingSpeed < 0.33f)
         {

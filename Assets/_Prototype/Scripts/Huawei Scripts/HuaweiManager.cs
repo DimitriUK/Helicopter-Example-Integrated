@@ -1,3 +1,4 @@
+using HmsPlugin;
 using UnityEngine;
 
 public class HuaweiManager : MonoBehaviour
@@ -5,36 +6,31 @@ public class HuaweiManager : MonoBehaviour
     public static HuaweiManager instance;
     public bool IsAdsOn;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
 
         CheckIfAdsEnabled();
     }
 
-    private void CheckIfAdsEnabled()
+    public void CheckIfAdsEnabled()
     {
-        int adsOn = PlayerPrefs.GetInt("Ads", 1);
+        IsAdsOn = true;
 
-        if (PlayerPrefs.HasKey("Ads"))
+        HMSIAPManager.Instance.RestorePurchases((returnedList) =>
         {
-            adsOn = PlayerPrefs.GetInt("Ads");
-
-            if (adsOn == 0)
+            foreach (var item in returnedList.ItemList)
             {
-                IsAdsOn = false;
+                if (item == "remove_ads")
+                {
+                    DisableAds();
+                }
             }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("Ads", 1);
-            IsAdsOn = true;
-        }
+        });
     }
 
     public void DisableAds()
     {
-        PlayerPrefs.SetInt("Ads", 0);
         IsAdsOn = false;
         Debug.Log("ADS HAS BEEN TURNED OFF!");
     }
